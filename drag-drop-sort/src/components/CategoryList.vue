@@ -106,9 +106,15 @@ export default {
       this.dragging.id = parseInt(event.target.dataset.itemId)
       this.dragging.fromPosition = parseInt(event.target.dataset.dragPosition)
       this.dragging.itemType = event.target.dataset.itemType
+      var dragImg = event.srcElement.parentElement.cloneNode(true)
+      dragImg.id = `dragging-${this.dragging.id}`
+      dragImg.classList.add('dragging')
+      document.body.appendChild(dragImg)
+      event.dataTransfer.setDragImage(dragImg, 30, 30)
     },
 
     dragEnd (event) {
+      document.getElementById(`dragging-${this.dragging.id}`).remove()
       this.dragging.id = null
       this.dragging.fromPosition = null
       this.dragging.toPosition = null
@@ -179,7 +185,7 @@ export default {
             this.$nextTick(() => {
               let sectionId = this.categoriesLoadScrollBottom
               let sectionElRef = this.elementRefs.filter((eElement) => eElement.id === sectionId)
-                                            .map((eElement) => eElement.el)[0]
+                                                 .map((eElement) => eElement.el)[0]
               sectionElRef.lastElementChild.scrollIntoView({ behavior: 'smooth' })
               this.categoriesLoadScrollBottom = false
             })
@@ -290,10 +296,11 @@ export default {
   background-color: #edd;
 }
 .dragging {
-  opacity: 0.4;
-}
-.dragging-one {
-  background-color:#c6c6c6;
+  color: #eee;
+  font-weight: bold;
+  opacity: 0.8;
+  background-color: #999 !important;
+  max-width: 320px;
 }
 .category-options i {
   padding: 2px;
