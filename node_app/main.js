@@ -15,7 +15,7 @@ app.use((req, res, next) => {
 // Category App Module
 const categoryApp = require("./categories");
 
-// Routes
+// Routes: category
 app.get("/api/categories/:sectionId?", (req, res) => {
   const categories = categoryApp.getCategories();
   if (!categories) {
@@ -25,6 +25,7 @@ app.get("/api/categories/:sectionId?", (req, res) => {
   res.status(200);
   res.json({ results: categories });
 })
+
 app.post("/api/category/", (req, res) => {
   if (categoryApp.addCategory(req.body)) {
     res.status(201);
@@ -35,12 +36,18 @@ app.post("/api/category/", (req, res) => {
   res.json({ error: 1, msg: 'nothing happened' });
 
 })
+
 app.patch("/api/category/:categoryId", (req, res) => {
   categoryApp.updateCategory(req.params.categoryId, req.body);
   res.status(200);
   res.json({ error: 0 });
 })
 
+app.patch("/api/categories/", (req, res) => {
+  categoryApp.updateCategories(req.body);
+})
+
+// Routes: section
 app.get("/api/sections/", (req, res) => {
   const sections = categoryApp.getSections();
   if (!sections) {
@@ -51,6 +58,11 @@ app.get("/api/sections/", (req, res) => {
   res.json({ results: sections });
 })
 
+app.patch("/api/sections/", (req, res) => {
+  categoryApp.updateSections(req.body);
+})
+
+// Server
 app.listen(port, () => {
   console.log(`Express app server initialized on port ${port}`);
 });
