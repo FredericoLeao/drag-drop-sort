@@ -1,4 +1,6 @@
 <template>
+  <div id="hidden-dragging"></div>
+  <div id="dragging-overlay"></div>
   <div id="categories-table" class="wrapper container p-5 pt-0">
     <div class="row p-2 d-flex shadow" style="border-color: #999 !important;">
       <div class="col-12 p-2"><h3> Drag and drop organizer </h3></div>
@@ -109,7 +111,7 @@ export default {
       var dragImg = event.srcElement.parentElement.cloneNode(true)
       dragImg.id = `dragging-${this.dragging.id}`
       dragImg.classList.add('dragging')
-      document.body.appendChild(dragImg)
+      document.getElementById('hidden-dragging').appendChild(dragImg)
       event.dataTransfer.setDragImage(dragImg, 30, 30)
     },
 
@@ -307,5 +309,29 @@ export default {
 }
 .category-options i:hover {
   background-color: #ba6;
+}
+body>#hidden-dragging {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+#hiddenDrags .dragging {
+  z-index: 1;
+}
+#dragging-overlay {
+  background-color: #fff;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+}
+#categories-table {
+  top: 0;
+  left: 0;
+  z-index: 10;
+  position: absolute;
 }
 </style>
