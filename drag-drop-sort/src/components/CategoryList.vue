@@ -1,7 +1,7 @@
 <template>
   <div id="categories-table" class="wrapper container p-5 pt-0">
     <div class="row p-2 d-flex shadow" style="border-color: #999 !important;">
-      <div class="col-12"><h1> Categorias</h1></div>
+      <div class="col-12 p-2"><h3> Drag and drop organizer </h3></div>
     </div>
     <div class="row mt-3">
       <div class="col-4" v-for="(section, idn) in sortedSections" :value="section.id" :key="idn">
