@@ -8,7 +8,7 @@
     <div class="row mt-3">
       <div class="col-4" v-for="(section, idn) in sortedSections" :value="section.id" :key="idn">
         <div class="card my-1 shadow">
-          <div class="card-header"
+          <div class="card-header draggable-item"
             :data-item-id="section.id"
             :data-drag-position="idn"
             data-item-type="section"
@@ -292,7 +292,7 @@ export default {
 .draggable-item {
   position: relative;
   z-index: 100;
-  cursor: pointer;
+  cursor: grab;
 }
 .drop-spotted {
   background-color: #edd;
@@ -307,6 +307,7 @@ export default {
 .category-options i {
   padding: 2px;
 }
+i.bi { cursor: pointer; }
 .category-options i:hover {
   background-color: #ba6;
 }
