@@ -7,9 +7,13 @@ With a simple NodeJS Express back-end API to simulate a database and handle basi
 
 # How it works
 
-Drag and drop Sections to each other to reorganize it's positions.
+Drag and drop sections to each other to reorganize it's positions.
 
 Drag and drop categories inside it's own section to reorganize it's positions.
+
+Add new categories by pressing '+' button on each section
+
+Rename categories by clicking on the pencil icon (shown on mouse over) and then press Enter
 
 # Requirements
 
